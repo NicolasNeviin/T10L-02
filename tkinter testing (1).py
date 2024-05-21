@@ -3,7 +3,7 @@ from PIL import ImageTk,Image
 import os
 os.path.abspath("tkinter testing/peguin.png")
 os.path.abspath("tkinter testing/grass-4149340_1920.png")
-os.path.abspath("tkinter testing/mindblown-mindblowing.ico")
+os.path.abspath("tkinter testing/mindblown-mindblowing.ico")    (记得换完全部abs no C:/)
 
 
 root = Tk()
