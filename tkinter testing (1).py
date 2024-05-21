@@ -3,6 +3,8 @@ from PIL import ImageTk,Image
 import os
 os.path.abspath("tkinter testing/peguin.png")
 os.path.abspath("tkinter testing/grass-4149340_1920.png")
+os.path.abspath("tkinter testing/mindblown-mindblowing.ico")
+
 
 root = Tk()
 root.title("MindBlowing")
