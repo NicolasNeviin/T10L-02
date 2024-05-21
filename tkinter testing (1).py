@@ -1,5 +1,8 @@
 from tkinter import *
 from PIL import ImageTk,Image
+import os
+os.path.abspath("tkinter testing/peguin.png")
+os.path.abspath("tkinter testing/grass-4149340_1920.png")
 
 root = Tk()
 root.title("MindBlowing")
