@@ -33,33 +33,31 @@ class QuizApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Mind-Blowing!")
+        self.init_quiz()
+
+    def init_quiz(self):
         self.score = 0
         self.question_num = 0
         self.guesses = []
-        
-        self.question_label = tk.Label(root, text=questions[self.question_num], wraplength=400, justify="left")
-        self.question_label.pack(pady=20)
-        
-        self.canvas = Canvas(root, width=800, height=400)
+
+        self.canvas = Canvas(self.root, width=800, height=400)
         self.canvas.pack(fill="both", expand=True)
-        
+
         self.bg_image = PhotoImage(file="SKY.png")
         self.canvas.create_image(0, 0, anchor="nw", image=self.bg_image)
-        
-        self.question_label = tk.Label(root, text=questions[self.question_num], wraplength=400, justify="left", bg="white")
-        self.question_label.pack(pady=20)
+
+        self.question_label = tk.Label(self.root, text=questions[self.question_num], wraplength=400, justify="left", bg="white")
         self.canvas.create_window(400, 100, window=self.question_label)
 
-        
         self.var = tk.StringVar()
         self.option_buttons = []
         for option in options[self.question_num]:
-            btn = tk.Radiobutton(root, text=option, variable=self.var, value=option[0], indicatoron=0, width=20, pady=5)
+            btn = tk.Radiobutton(self.root, text=option, variable=self.var, value=option[0], indicatoron=0, width=20, pady=5)
             self.option_buttons.append(btn)
-            btn.pack()
+            self.canvas.create_window(400, 160 + len(self.option_buttons) * 40, window=btn)
 
-        self.submit_button = tk.Button(root, text="Submit", command=self.check_answer)
-        self.submit_button.pack(pady=20)
+        self.submit_button = tk.Button(self.root, text="Submit", command=self.check_answer)
+        self.canvas.create_window(400, 380, window=self.submit_button)
 
     def check_answer(self):
         guess = self.var.get()
@@ -80,7 +78,7 @@ class QuizApp:
             self.option_buttons[i].config(text=option, value=option[0])
 
     def show_results(self):
-        self.root.destroy()
+        self.root.quit()
         result_window = tk.Tk()
         result_window.title("Quiz Results")
 
@@ -96,9 +94,20 @@ class QuizApp:
 
         close_button = tk.Button(result_window, text="Close", command=result_window.destroy)
         close_button.pack(pady=20)
+        
+        playagain_button = tk.Button(result_window, text="Play Again", command=self.play_again)
+        playagain_button.pack(pady=10)
+
+        result_window.protocol("WM_DELETE_WINDOW", lambda: (self.root.deiconify(), result_window.destroy()))
 
         result_window.mainloop()
         
+    def play_again(self):
+        self.root.deiconify()
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        self.init_quiz()
+            
 root = tk.Tk()
 app = QuizApp(root)
 root.mainloop()
