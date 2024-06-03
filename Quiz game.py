@@ -2,30 +2,24 @@ from tkinter import Tk, Canvas, messagebox, PhotoImage
 import tkinter as tk
 import pygame
 import pygame.mixer
-
+import json
+import os
 
 pygame.init()
 BG = pygame.image.load("SKY.png")
 
 canvas_width=800
 canvas_height=400
-questions = [
-    "What is the past tense of the verb go?: ",
-    "Which of the following is a synonym for happy?: ",
-    "What is a synonym for the word exhilarating?: ",
-    "She ____ to the gym every morning.: ",
-    "Choose the correct word to complete the sentence: Her speech was full of _______ quotes.: ",
-    ]
 
-options = [
-    ["A. Goes", "B. Gone", "C. Went", "D. Going"],
-    ["A. Sad ", "B. Angry", "C. Joyful", "D. Tired"],
-    ["A. Boring", "B. Exciting", "C. Calm", "D. Depressing"],
-    ["A. go", "B. going", "C. goes", "D. gone"],
-    ["A. inspiring","B. inspiration", "C. inspire", "D. inspired"]
-      ]
+current_dir = os.path.dirname(os.path.abspath('C:\Mini It Project\Project\Test\quiz_data.json'))
 
-answers=["C","C","B","C","A"]
+
+relative_path = os.path.join("Test", "quiz_data.json")
+
+json_file_path = os.path.join(current_dir, relative_path)
+
+with open('C:\Mini It Project\Project\Test\quiz_data.json', 'r') as file:
+   quiz_data=json.load(file)
 
 music=pygame.mixer.music.load('Game music.mp3')
 pygame.mixer.music.play(-1)
@@ -45,36 +39,41 @@ class QuizApp:
 
         self.bg_image = PhotoImage(file="SKY.png")
         self.canvas.create_image(0, 0, anchor="nw", image=self.bg_image)
+        
+        self.display_question()
 
-        self.question_label = tk.Label(self.root, text=questions[self.question_num], wraplength=400, justify="left", bg="white")
+    def display_question(self):
+        question_data = quiz_data[self.question_num]
+    
+        self.question_label = tk.Label(self.root, text=question_data['question'], wraplength=400, justify="left", bg="white")
         self.canvas.create_window(400, 100, window=self.question_label)
 
         self.var = tk.StringVar()
         self.option_buttons = []
-        for option in options[self.question_num]:
+        for idx, option in enumerate(question_data['options']):
             btn = tk.Radiobutton(self.root, text=option, variable=self.var, value=option[0], indicatoron=0, width=20, pady=5)
             self.option_buttons.append(btn)
-            self.canvas.create_window(400, 160 + len(self.option_buttons) * 40, window=btn)
-
+            self.canvas.create_window(400, 160 + idx * 40, window=btn)
+       
         self.submit_button = tk.Button(self.root, text="Submit", command=self.check_answer)
         self.canvas.create_window(400, 380, window=self.submit_button)
 
     def check_answer(self):
         guess = self.var.get()
         self.guesses.append(guess)
-        if guess == answers[self.question_num]:
+        if guess == quiz_data[self.question_num]['answer']:
             self.score += 1
 
         self.question_num += 1
-        if self.question_num < len(questions):
+        if self.question_num < len(quiz_data):
             self.update_question()
         else:
             self.show_results()
 
     def update_question(self):
-        self.question_label.config(text=questions[self.question_num])
+        self.question_label.config(text=quiz_data[self.question_num]['question'])
         self.var.set(None)
-        for i, option in enumerate(options[self.question_num]):
+        for i, option in enumerate(quiz_data[self.question_num]['options']):
             self.option_buttons[i].config(text=option, value=option[0])
 
     def show_results(self):
@@ -82,11 +81,11 @@ class QuizApp:
         result_window = tk.Tk()
         result_window.title("Quiz Results")
 
-        score_percentage = int(self.score / len(questions) * 100)
+        score_percentage = int(self.score / len(quiz_data) * 100)
         result_label = tk.Label(result_window, text=f"Your score is: {score_percentage}%", pady=20)
         result_label.pack()
 
-        answers_label = tk.Label(result_window, text=f"Correct answers: {' '.join(answers)}", pady=5)
+        answers_label = tk.Label(result_window, text=f"Correct answers: {' '.join([data['answers']for data in quiz_data])}", pady=5)
         answers_label.pack()
 
         guesses_label = tk.Label(result_window, text=f"Your guesses: {' '.join(self.guesses)}", pady=5)

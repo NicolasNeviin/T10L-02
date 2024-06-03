@@ -1,7 +1,26 @@
 [{
-    "Questions": "What is the past tense of the verb go?:",
+    "questions": "What is the past tense of the verb go?:",
     "options": "A. Goes, B. Gone, C. Went, D. Going",
-    "Answers": "c"
-
-    
-}]
+    "answers": "C"
+ },
+ {  
+    "questions": "Which of the following is the synonym for happy?: ",
+    "options": "A.Sad, B. Angry, C.Joyful, D.Tired",
+    "answers": "C"
+ },
+ {
+    "questions": "What is a synonym for the word exhilarating?: ",
+    "options": "A.Boring, B. Exiting, C.Calm, D.Depressing",
+    "answers": "B"
+ },
+ {  
+    "questions": "She ____ to the gym every morning?: ",
+    "options": "A.go, B. going, C.goes, D.gone",
+    "answers": "C"
+ },
+ {
+    "questions": "Choose the correct word to complete the sentence: Her speech was full of _______ quotes?: ",
+    "options": "A.Inspiring, B. Inspiration, C.Inspire, D.Inspired",
+    "answers": "C"
+ } 
+]
