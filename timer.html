@@ -3,74 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer App</title>
+    <title>Countdown Timer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-        }
-       .timer-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-       .timer-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: #fff;
-            border: 2px solid #ddd;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
         }
-       .timer-text {
-            font-size: 24px;
+        .timer-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
             font-weight: bold;
+            color: #333;
         }
-       .input-container {
-            margin-top: 20px;
+        .controls {
+            text-align: center;
+        }
+        .controls input {
+            padding: 10px;
+            font-size: 1em;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="timer-container">
-        <div class="timer-circle">
-            <span id="timer-text" class="timer-text">00:00</span>
-        </div>
-    </div>
-    <div class="input-container">
-        <input id="seconds-input" type="number" value="0" />
-        <button id="start-button">Start</button>
-    </div>
 
-    <script>
-        let timer = 0;
-        let intervalId = null;
+<div class="timer-container" id="timer">00</div>
 
-        document.getElementById("start-button").addEventListener("click", () => {
-            timer = parseInt(document.getElementById("seconds-input").value);
-            intervalId = setInterval(() => {
-                timer -= 1;
-                updateTimerText();
-                if (timer <= 3) {
-                    beep();
-                }
-                if (timer <= 0) {
-                    clearInterval(intervalId);
-                }
-            }, 1000);
-        });
+<div class="controls">
+    <input type="number" id="timeInput" placeholder="Enter seconds" min="1">
+    <button onclick="startTimer()">Start Timer</button>
+</div>
 
-        function updateTimerText() {
-            let minutes = Math.floor(timer / 60);
-            let seconds = timer % 60;
-            document.getElementById("timer-text").innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+<audio id="beepSound">
+    <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+</audio>
+
+<script>
+    let timer;
+    let beepSound = document.getElementById('beepSound');
+
+    function startTimer() {
+        clearInterval(timer);
+        let time = parseInt(document.getElementById('timeInput').value);
+        if (isNaN(time) || time <= 0) {
+            alert("Please enter a valid number of seconds.");
+            return;
         }
+        let timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = time;
 
-        function beep() {
-            var audio = new Audio('beep.mp3');
-            audio.play();
-        }
-    </script>
+        timer = setInterval(() => {
+            time--;
+            timerDisplay.textContent = time;
+            if (time <= 3 && time > 0) {
+                beepSound.play();
+            }
+            if (time <= 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+</script>
+
 </body>
 </html>
