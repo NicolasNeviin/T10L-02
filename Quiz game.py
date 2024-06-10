@@ -4,7 +4,6 @@ import pygame
 import pygame.mixer
 import json
 import os
-
 pygame.init()
 BG = pygame.image.load("SKY.png")
 
@@ -12,7 +11,6 @@ canvas_width=800
 canvas_height=400
 
 current_dir = os.path.dirname(os.path.abspath('C:\Mini It Project\Project\Test\quiz_data.json'))
-
 
 relative_path = os.path.join("Test", "quiz_data.json")
 
@@ -23,6 +21,7 @@ with open('C:\Mini It Project\Project\Test\quiz_data.json', 'r') as file:
 
 music=pygame.mixer.music.load('Game music.mp3')
 pygame.mixer.music.play(-1)
+
 class QuizApp:
     def __init__(self, root):
         self.root = root
@@ -49,20 +48,20 @@ class QuizApp:
         self.canvas.create_window(400, 100, window=self.question_label)
 
         self.var = tk.StringVar()
-        self.option_buttons = []
+        self.option_button=[]
         for idx, option in enumerate(question_data['options']):
-            btn = tk.Radiobutton(self.root, text=option, variable=self.var, value=option[0], indicatoron=0, width=20, pady=5)
-            self.option_buttons.append(btn)
-            self.canvas.create_window(400, 160 + idx * 40, window=btn)
-       
+            btn = tk.Radiobutton(self.root, text=option, variable=self.var, value=option[0], indicatoron=0, width=50, height=2)
+            self.option_button.append(btn)
+            self.canvas.create_window(400, 160 + idx * 80, window=btn)
+            
         self.submit_button = tk.Button(self.root, text="Submit", command=self.check_answer)
         self.canvas.create_window(400, 380, window=self.submit_button)
 
     def check_answer(self):
-        guess = self.var.get()
+        guess = self.var.get() 
         self.guesses.append(guess)
         if guess == quiz_data[self.question_num]['answer']:
-            self.score += 1
+            self.score += 1            
 
         self.question_num += 1
         if self.question_num < len(quiz_data):
@@ -74,7 +73,7 @@ class QuizApp:
         self.question_label.config(text=quiz_data[self.question_num]['question'])
         self.var.set(None)
         for i, option in enumerate(quiz_data[self.question_num]['options']):
-            self.option_buttons[i].config(text=option, value=option[0])
+            self.option_button[i].config(text=option, value=option[0])
 
     def show_results(self):
         self.root.quit()
@@ -85,7 +84,7 @@ class QuizApp:
         result_label = tk.Label(result_window, text=f"Your score is: {score_percentage}%", pady=20)
         result_label.pack()
 
-        answers_label = tk.Label(result_window, text=f"Correct answers: {' '.join([data['answers']for data in quiz_data])}", pady=5)
+        answers_label = tk.Label(result_window, text=f"Correct answers: {' '.join([data['answer'] for data in quiz_data])}", pady=5)
         answers_label.pack()
 
         guesses_label = tk.Label(result_window, text=f"Your guesses: {' '.join(self.guesses)}", pady=5)
