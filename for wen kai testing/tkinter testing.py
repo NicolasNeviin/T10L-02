@@ -1,15 +1,11 @@
 from tkinter import *
 from PIL import ImageTk,Image
-import os.path
-
-os.path.abspath("./peguin.png")
-os.path.abspath("./grass-4149340_1920.png")
-os.path.abspath(r"./mindblown-mindblowing.ico")
 
 
 root = Tk()
 root.title("MindBlowing")
 root.iconbitmap("./mindblown-mindblowing.ico")
+root.geometry("800x500")
 
 
 
@@ -18,7 +14,7 @@ root.iconbitmap("./mindblown-mindblowing.ico")
 pic0 = ImageTk.PhotoImage(Image.open("./peguin.png"))
 pic1 = ImageTk.PhotoImage(Image.open("./grass-4149340_1920.png"))
 bg = PhotoImage(file = "./grass-4149340_1920.png")
-mylabel = Label(root , image=bg)
+mylabel = Label(image=bg).pack()
 
 
 
