@@ -5,21 +5,21 @@ import pygame.mixer
 import json
 import os
 pygame.init()
-BG = pygame.image.load("SKY.png")
+BG = pygame.image.load("./SKY.png")
 
 canvas_width=800
 canvas_height=400
 
-current_dir = os.path.dirname(os.path.abspath('C:\Mini It Project\Project\Test\quiz_data.json'))
+current_dir = os.path.dirname(os.path.abspath('./quiz_data.json'))
 
 relative_path = os.path.join("Test", "quiz_data.json")
 
 json_file_path = os.path.join(current_dir, relative_path)
 
-with open('C:\Mini It Project\Project\Test\quiz_data.json', 'r') as file:
+with open('./quiz_data.json', 'r') as file:
    quiz_data=json.load(file)
 
-music=pygame.mixer.music.load('Game music.mp3')
+music=pygame.mixer.music.load('./Game music.mp3')
 pygame.mixer.music.play(-1)
 
 class QuizApp:
@@ -36,7 +36,7 @@ class QuizApp:
         self.canvas = Canvas(self.root, width=800, height=400)
         self.canvas.pack(fill="both", expand=True)
 
-        self.bg_image = PhotoImage(file="SKY.png")
+        self.bg_image = PhotoImage(file="./SKY.png")
         self.canvas.create_image(0, 0, anchor="nw", image=self.bg_image)
         
         self.display_question()
