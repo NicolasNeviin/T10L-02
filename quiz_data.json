@@ -61,7 +61,7 @@
     },
     {
         "question": "13.  Is one a number?",
-        "options": ["True.", "False"],
-        "answer": "True"
+        "options": ["T.True", "F.False"],
+        "answer": "T"
     }
 ]
