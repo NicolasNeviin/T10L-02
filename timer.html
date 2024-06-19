@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .timer-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .controls {
+            text-align: center;
+        }
+        .controls input {
+            padding: 10px;
+            font-size: 1em;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timer-container" id="timer">00</div>
+
+<div class="controls">
+    <input type="number" id="timeInput" placeholder="Enter seconds" min="1">
+    <button onclick="startTimer()">Start Timer</button>
+</div>
+
+<audio id="beepSound">
+    <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+</audio>
+
+<script>
+    let timer;
+    let beepSound = document.getElementById('beepSound');
+
+    function startTimer() {
+        clearInterval(timer);
+        let time = parseInt(document.getElementById('timeInput').value);
+        if (isNaN(time) || time <= 0) {
+            alert("Please enter a valid number of seconds.");
+            return;
+        }
+        let timerDisplay = document.getElementById('timer');
+        timerDisplay.textContent = time;
+
+        timer = setInterval(() => {
+            time--;
+            timerDisplay.textContent = time;
+            if (time <= 3 && time > 0) {
+                beepSound.play();
+            }
+            if (time <= 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
