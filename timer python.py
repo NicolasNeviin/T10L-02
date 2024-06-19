@@ -1,50 +1,46 @@
 import tkinter as tk
-from tkinter import ttk
-from playsound import playsound
-import threading
 import time
+import winsound  # for Windows, use `os.system` for Mac/Linux
 
 class CountdownTimer:
-    def _init_(self, root):
-        self.root = root
+    def __init__(self):
+        self.root = tk.Tk()
         self.root.title("Countdown Timer")
         self.root.geometry("200x200")
-        self.root.configure(bg="#f0f0f0")
+        self.root.configure(background="#f0f0f0")
 
-        self.time_remaining = 300  # 5 minutes in seconds
-        self.is_running = False
+        self.timer_container = tk.Label(self.root, text="05:00", font=("Arial", 24, "bold"), bg="#fff", fg="#333")
+        self.timer_container.pack(pady=20)
 
-        # Timer display
-        self.timer_label = ttk.Label(root, text=self.format_time(self.time_remaining), font=("Arial", 30), background="#fff", foreground="#333")
-        self.timer_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER, width=120, height=120)
+        self.controls = tk.Frame(self.root, bg="#f0f0f0")
+        self.controls.pack()
 
-        # Start the timer automatically
+        self.beep_sound = "beep.wav"  # replace with your beep sound file
+
         self.start_timer()
 
+        self.root.mainloop()
+
     def start_timer(self):
-        self.is_running = True
-        self.update_timer()
+        self.time = 300
+        self.update_timer_display(self.time)
+        self.timer = self.root.after(1000, self.decrement_time)
 
-    def update_timer(self):
-        if self.is_running and self.time_remaining > 0:
-            self.time_remaining -= 1
-            self.timer_label.config(text=self.format_time(self.time_remaining))
-            
-            if self.time_remaining <= 3 and self.time_remaining > 0:
-                threading.Thread(target=playsound, args=("https://www.soundjay.com/button/beep-07.wav",), daemon=True).start()
-
-            self.root.after(1000, self.update_timer)
+    def decrement_time(self):
+        self.time -= 1
+        self.update_timer_display(self.time)
+        if self.time <= 3 and self.time > 0:
+            winsound.PlaySound(self.beep_sound, winsound.SND_FILENAME)  # play beep sound
+        if self.time <= 0:
+            self.root.after_cancel(self.timer)
         else:
-            self.is_running = False
+            self.timer = self.root.after(1000, self.decrement_time)
 
-    def format_time(self, seconds):
-        minutes = seconds // 60
-        seconds = seconds % 60
-        return f"{minutes:02}:{seconds:02}"
+    def update_timer_display(self, time):
+        minutes = time // 60
+        seconds = time % 60
+        formatted_time = f"{minutes:02d}:{seconds:02d}"
+        self.timer_container.config(text=formatted_time)
 
-# Set up the root window
-root = tk.Tk()
-app = CountdownTimer(root)
-
-# Run the Tkinter event loop
-root.mainloop()
+if __name__ == "__main__":
+    CountdownTimer()
