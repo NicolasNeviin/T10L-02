@@ -1,0 +1,121 @@
+{
+    "quiz": [
+      {
+        "type": "multiple_choice",
+        "question": "1. Which sentence is grammatically correct?",
+        "options": [
+          "A) Him and I went to the store.",
+          "B) He and me went to the store.",
+          "C) He and I went to the store.",
+          "D) Him and me went to the store."
+
+        ],
+        "answer": "C)"
+      },
+      {
+        "type": "true_false",
+        "question": "2. The pronoun 'I' should always be capitalized.",
+        "answer": "True"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "question": "3. The new student ____________ from Italy.",
+        "blank": "is"
+      },
+      {
+        "type": "multiple_choice",
+        "question": "4.  What is the past tense of the verb go?:",
+        "options": [
+          "A) Goes",
+          "B) Gone",
+          "C) Went",
+          "D) Going"
+        ],
+        "answer": "C)"
+      },
+      {
+        "type": "multiple_choice",
+        "question": "5.  Which of the following is the synonym for happy?: ",
+        "options": [
+          "A) Sad",
+          "B) Angry",
+          "C) Joyful",
+          "D) Tired"
+        ],
+        "answer": "C)"
+      },
+      {
+        "type": "multiple_choice",
+        "question": "6.  What is a synonym for the word exhilarating?: ",
+        "options": [
+          "A) Boring",
+          "B) Exciting",
+          "C) Calm",
+          "D) Depressing"
+        ],
+        "answer": "B)"
+      },
+      {
+        "type": "multiple_choice",
+        "question": "7.  Choose the correct form of the verb: ",
+        "options": [
+          "A) She goed to the store.",
+          "B) She goed to the store yesterday.",
+          "C) She gone to the store yesterday.",
+          "D) She went to the store yesterday."
+        ],
+        "answer": "D)"
+      },
+      {
+        "type": "true_false",
+        "question": "8. An adverb describes a noun.",
+        "answer": "False"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "question": "9. He was so tired that he ____________ asleep during the movie.",
+        "blank": "fell"
+      },
+      {
+        "type": "true_false",
+        "question": "10. The possessive form of 'it' is spelled 'its'.",
+        "answer": "True "
+      },
+      {
+        "type": "multiple_choice",
+        "question": "11.  Which sentence is in the passive voice? ",
+        "options": [
+          "A) John fixed the car.",
+          "B) The car was fixed by John.",
+          "C) Mary will finish her work soon.",
+          "D) They have painted the fence."
+        ],
+        "answer": "B)"
+      },
+      {
+        "type": "multiple_choice",
+        "question": "12.  Which of the following sentences is grammatically correct?",
+        "options": [
+          "A) She don't like pizza.",
+          "B) They doesn't like coffee.",
+          "C)  He doesn't like ice cream.",
+          "D) I hasn't seen him"
+        ],
+        "answer": "C)"
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    ]
+  }
