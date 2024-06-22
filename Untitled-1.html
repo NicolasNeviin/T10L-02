@@ -14,12 +14,12 @@
             margin: 0;
             background-color: #f0f0f0;
         }
-        .timer-container {
+       .timer-container {
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: #fff;
             display: flex;
@@ -30,11 +30,23 @@
             font-weight: bold;
             color: #333;
         }
+       .controls {
+            text-align: center;
+        }
+       .controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <div class="timer-container" id="timer">05:00</div>
+
+<div class="controls">
+    <!-- removed the start button, as the timer will start automatically -->
+</div>
 
 <audio id="beepSound">
     <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
@@ -43,11 +55,14 @@
 <script>
     let timer;
     let beepSound = document.getElementById('beepSound');
-    let initialTime = 300; // 5 minutes in seconds
+
+    // start the timer automatically when the page loads
+    startTimer();
 
     function startTimer() {
         clearInterval(timer);
-        let time = initialTime;
+        let time = 300; // 5 minutes in seconds
+        let timerDisplay = document.getElementById('timer');
         updateTimerDisplay(time);
 
         timer = setInterval(() => {
@@ -65,14 +80,13 @@
     function updateTimerDisplay(time) {
         let minutes = Math.floor(time / 60);
         let seconds = time % 60;
-        document.getElementById('timer').textContent = ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')};
-    }
-
-    // Automatically start the timer for 5 minutes (300 seconds) on page load
-    window.onload = function() {
-        startTimer();
+        let formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        document.getElementById('timer').textContent = formattedTime;
     }
 </script>
 
 </body>
 </html>
+
+
+

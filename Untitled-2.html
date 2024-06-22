@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Congratulations!</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #congrats-container {
+      text-align: center;
+    }
+    #congrats-message {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      animation: congrats-anim 2s ease-in-out infinite;
+    }
+    @keyframes congrats-anim {
+      0% {
+        transform: scale(1);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="congrats-container">
+    <h1 id="congrats-message">Congratulations!</h1>
+  </div>
+
+  <script>
+    // Add your quiz logic here to display the score and play again button
+  </script>
+</body>
+</html>
