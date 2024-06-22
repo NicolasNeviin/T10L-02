@@ -13,3 +13,16 @@ Player: Nicolas | Score: 46
 Player: Telur | Score: 23
 Player: mmu | Score: 46
 >>>>>>> d7ba72e6211390fa65c1d1b16f952c932a53ead9
+Player: Nicolas | Score: 69
+Player: Nicolas | Score: 7
+Player: Anonymous | Score: 76
+Player: k | Score: 84
+Player: ll | Score: 53
+Player: nicolas | Score: 7
+Player: n | Score: 46
+Player: k | Score: 7
+Player: i | Score: 0
+Player: f | Score: 7
+Player: k | Score: 0
+Player: m | Score: 7
+Player: 2 | Score: 64

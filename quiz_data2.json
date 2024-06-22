@@ -1,0 +1,25 @@
+{
+    "quiz": [
+      {
+        "type": "multiple_choice",
+        "question": "What is the capital of France?",
+        "options": [
+          "A) Berlin",
+          "B) Madrid",
+          "C) Paris",
+          "D) Rome"
+        ],
+        "answer": "C"
+      },
+      {
+        "type": "true_false",
+        "question": "The sky is green.",
+        "answer": false
+      },
+      {
+        "type": "fill_in_the_blank",
+        "question": "The chemical symbol for water is ____.",
+        "blank": "H2O"
+      }
+    ]
+  }
