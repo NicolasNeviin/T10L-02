@@ -78,11 +78,31 @@
       },
       {
         "type": "true_false",
-        "question": "8. The possessive form of 'it' is spelled 'its'.",
+        "question": "10. The possessive form of 'it' is spelled 'its'.",
         "answer": "True "
+      },
+      {
+        "type": "multiple_choice",
+        "question": "11.  Which sentence is in the passive voice? ",
+        "options": [
+          "A) John fixed the car.",
+          "B) The car was fixed by John.",
+          "C) Mary will finish her work soon.",
+          "D) They have painted the fence."
+        ],
+        "answer": "B)"
+      },
+      {
+        "type": "multiple_choice",
+        "question": "12.  Which of the following sentences is grammatically correct?",
+        "options": [
+          "A) She don't like pizza.",
+          "B) They doesn't like coffee.",
+          "C)  He doesn't like ice cream.",
+          "D) I hasn't seen him"
+        ],
+        "answer": "C)"
       }
-
-
 
 
 
